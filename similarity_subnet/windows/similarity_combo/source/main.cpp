@@ -4,8 +4,8 @@
 
 #include "Combo.cuh"
 #include "Classifier.h"
-#include <Windows.h>
-#include <direct.h>
+//#include <Windows.h>
+//#include <direct.h>
 
 #define MAX_LEN 1024
 
@@ -17,7 +17,7 @@ int ComputeCombo(int argc, char** argv)
 	int eid = atoi(argv[4]);
 	int gid = atoi(argv[5]);
 
-	string fname = rootDir + "\\pairs.txt";
+	string fname = rootDir + "/pairs.txt";
 	FILE* fp = fopen(fname.c_str(), "r");
 	char name0[260], name1[260];
 	float score = 0.f;
@@ -35,15 +35,15 @@ int ComputeCombo(int argc, char** argv)
 
 	dp.SetGPU(gid);
 
-	string inputDir = rootDir + "\\input\\";
-	string outputDir_flow = rootDir + "\\flow\\";
-	string outputDir_combo = rootDir + "\\combo_new\\";
+	string inputDir = rootDir + "/input/";
+	string outputDir_flow = rootDir + "/flow/";
+	string outputDir_combo = rootDir + "/combo_new/";
 
-	CreateDirectoryA(outputDir_flow.c_str(), NULL);
-	CreateDirectoryA(outputDir_combo.c_str(), NULL);
+	//CreateDirectoryA(outputDir_flow.c_str(), NULL);
+	//CreateDirectoryA(outputDir_combo.c_str(), NULL);
 
-	string model_file = "\\vgg_19_gray_bn\\deploy.prototxt";
-	string trained_file = "\\vgg_19_gray_bn\\vgg19_bn_gray_ft_iter_150000.caffemodel";
+	string model_file = "/vgg_19_gray_bn/deploy.prototxt";
+	string trained_file = "/vgg_19_gray_bn/vgg19_bn_gray_ft_iter_150000.caffemodel";
 
 	::google::InitGoogleLogging("ComputeCombo");
 
@@ -82,17 +82,17 @@ int ComputeCombo(int argc, char** argv)
 		char ffileName1[260];
 
 		// detect if combo exists
-		sprintf(fileName0, "%s\\%s_%s.combo", outputDir_combo.c_str(), name_A.c_str(), name_B.c_str());
-		DWORD dwAttrib0 = GetFileAttributes(fileName0);
+		// sprintf(fileName0, "%s\\%s_%s.combo", outputDir_combo.c_str(), name_A.c_str(), name_B.c_str());
+		// DWORD dwAttrib0 = GetFileAttributes(fileName0);
 
-		sprintf(fileName1, "%s\\%s_%s.combo", outputDir_combo.c_str(), name_B.c_str(), name_A.c_str());
-		DWORD dwAttrib1 = GetFileAttributes(fileName1);
+		// sprintf(fileName1, "%s\\%s_%s.combo", outputDir_combo.c_str(), name_B.c_str(), name_A.c_str());
+		// DWORD dwAttrib1 = GetFileAttributes(fileName1);
 
-		if (dwAttrib0 != INVALID_FILE_ATTRIBUTES && dwAttrib1 != INVALID_FILE_ATTRIBUTES)
-		{
-			printf("Info: Combo %s and %s exist.\n", fileName0, fileName1);
-			continue;
-		}
+		// if (dwAttrib0 != INVALID_FILE_ATTRIBUTES && dwAttrib1 != INVALID_FILE_ATTRIBUTES)
+		// {
+		// 	printf("Info: Combo %s and %s exist.\n", fileName0, fileName1);
+		// 	continue;
+		// }
 
 		// load images
 		bool isOKA = dp.LoadA(A.c_str());
@@ -126,23 +126,23 @@ int ComputeCombo(int argc, char** argv)
 		}
 
 		// first detect if flow exits
-		sprintf(ffileName0, "%s\\%s_%s.txt", outputDir_flow.c_str(), name_A.c_str(), name_B.c_str());
-		dwAttrib0 = GetFileAttributes(ffileName0);
+		// sprintf(ffileName0, "%s\\%s_%s.txt", outputDir_flow.c_str(), name_A.c_str(), name_B.c_str());
+		// dwAttrib0 = GetFileAttributes(ffileName0);
 
-		sprintf(ffileName1, "%s\\%s_%s.txt", outputDir_flow.c_str(), name_B.c_str(), name_A.c_str());
-		dwAttrib1 = GetFileAttributes(ffileName1);
+		// sprintf(ffileName1, "%s\\%s_%s.txt", outputDir_flow.c_str(), name_B.c_str(), name_A.c_str());
+		// dwAttrib1 = GetFileAttributes(ffileName1);
 
-		if (dwAttrib0 == INVALID_FILE_ATTRIBUTES)
-		{
-			printf("Error: Flow %s does not exist!\n", ffileName0);
-			continue;
-		}
+		// if (dwAttrib0 == INVALID_FILE_ATTRIBUTES)
+		// {
+		// 	printf("Error: Flow %s does not exist!\n", ffileName0);
+		// 	continue;
+		// }
 
-		if (dwAttrib1 == INVALID_FILE_ATTRIBUTES)
-		{
-			printf("Error: Flow %s does not exist!\n", ffileName1);
-			continue;
-		}
+		// if (dwAttrib1 == INVALID_FILE_ATTRIBUTES)
+		// {
+		// 	printf("Error: Flow %s does not exist!\n", ffileName1);
+		// 	continue;
+		// }
 
 		// detect if flow is valid
 		printf("Info: Flows exist.\n", i);
