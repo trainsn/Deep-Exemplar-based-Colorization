@@ -39,7 +39,7 @@ void run_flow(int argc, char** argv)
 	string inputDir = rootDir + "\\input" + postfix + "\\";
 	string outputDir_flow = rootDir + "\\flow" + postfix + "\\";
 	
-	CreateDirectoryA(outputDir_flow.c_str(), NULL);
+	//CreateDirectoryA(outputDir_flow.c_str(), NULL);
 
 	::google::InitGoogleLogging("deepanalogy");
 
@@ -76,14 +76,14 @@ void run_flow(int argc, char** argv)
 		string flow1 = outputDir_flow + name_A + "_" + name_B + ".txt";
 		string flow2 = outputDir_flow + name_B + "_" + name_A + ".txt";
 
-		DWORD dwAttrib0 = GetFileAttributes(flow1.c_str());
-		DWORD dwAttrib1 = GetFileAttributes(flow2.c_str());
+		// DWORD dwAttrib0 = GetFileAttributes(flow1.c_str());
+		// DWORD dwAttrib1 = GetFileAttributes(flow2.c_str());
 
-		if (dwAttrib0 != INVALID_FILE_ATTRIBUTES && dwAttrib1 != INVALID_FILE_ATTRIBUTES)
-		{
-			printf("Info: Flow i = %d exits\n", i);
-			continue;
-		}
+		// if (dwAttrib0 != INVALID_FILE_ATTRIBUTES && dwAttrib1 != INVALID_FILE_ATTRIBUTES)
+		// {
+		// 	printf("Info: Flow i = %d exits\n", i);
+		// 	continue;
+		// }
 
 		dp.SetA(A);
 		dp.SetBPrime(BP);
