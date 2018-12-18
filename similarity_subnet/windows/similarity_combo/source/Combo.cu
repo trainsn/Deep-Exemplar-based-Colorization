@@ -267,7 +267,7 @@ FILE* fp_a, FILE* fp_b, const char* ff_a, const char* ff_b)
 	fwrite(&bh, sizeof(int), 1, fp_b);
 	fwrite(&bw, sizeof(int), 1, fp_b);
 
-	cv::vector<uchar> buf;
+	std::vector<uchar> buf;
 	imencode(".png", result_AB, buf);
 	int sz = buf.size();
 	fwrite(&sz, sizeof(int), 1, fp_a);
