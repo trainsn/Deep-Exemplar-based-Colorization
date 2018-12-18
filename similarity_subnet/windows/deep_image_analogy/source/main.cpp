@@ -1,7 +1,7 @@
 #include "DeepAnalogy.cuh"
 #include "Classifier.h"
-#include <Windows.h>
-#include <direct.h>
+//#include <Windows.h>
+//#include <direct.h>
 
 void run_flow(int argc, char** argv)
 {
