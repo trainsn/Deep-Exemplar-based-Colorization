@@ -18,7 +18,7 @@ void run_flow(int argc, char** argv)
 		postfix = "_" + string(argv[7]);
 	}
 
-	string fname = rootDir + "\\pairs" + postfix + ".txt";
+	string fname = rootDir + "/pairs" + postfix + ".txt";
 	FILE* fp = fopen(fname.c_str(), "r");
 	char name0[260], name1[260];
 	float score = 0.f;
@@ -36,8 +36,8 @@ void run_flow(int argc, char** argv)
 	dp.SetModel(modelDir);
 	dp.SetGPU(gid);
 
-	string inputDir = rootDir + "\\input" + postfix + "\\";
-	string outputDir_flow = rootDir + "\\flow" + postfix + "\\";
+	string inputDir = rootDir + "/input" + postfix + "/";
+	string outputDir_flow = rootDir + "/flow" + postfix + "/";
 	
 	//CreateDirectoryA(outputDir_flow.c_str(), NULL);
 
@@ -84,7 +84,7 @@ void run_flow(int argc, char** argv)
 		// 	printf("Info: Flow i = %d exits\n", i);
 		// 	continue;
 		// }
-
+                printf("I am here\n");
 		dp.SetA(A);
 		dp.SetBPrime(BP);
 		dp.SetOutputDir(outputDir_flow);
@@ -94,7 +94,6 @@ void run_flow(int argc, char** argv)
 		dp.LoadInputs();
 		dp.ComputeAnn(classifier_A, classifier_B);
 	}
-
 	google::ShutdownGoogleLogging();
 
 	classifier_A.DeleteNet();
