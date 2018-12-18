@@ -84,7 +84,7 @@ void run_flow(int argc, char** argv)
 		// 	printf("Info: Flow i = %d exits\n", i);
 		// 	continue;
 		// }
-                printf("I am here\n");
+
 		dp.SetA(A);
 		dp.SetBPrime(BP);
 		dp.SetOutputDir(outputDir_flow);

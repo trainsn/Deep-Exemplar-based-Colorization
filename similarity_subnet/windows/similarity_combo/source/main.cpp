@@ -147,8 +147,8 @@ int ComputeCombo(int argc, char** argv)
 		// detect if flow is valid
 		printf("Info: Flows exist.\n", i);
 
-		sprintf(fileName0, "%s\\%s_%s.combo", outputDir_combo.c_str(), name_A.c_str(), name_B.c_str());
-		sprintf(fileName1, "%s\\%s_%s.combo", outputDir_combo.c_str(), name_B.c_str(), name_A.c_str());
+		sprintf(fileName0, "%s/%s_%s.combo", outputDir_combo.c_str(), name_A.c_str(), name_B.c_str());
+		sprintf(fileName1, "%s/%s_%s.combo", outputDir_combo.c_str(), name_B.c_str(), name_A.c_str());
 
 		FILE* fp_a = fopen(fileName0, "wb");
 		FILE* fp_b = fopen(fileName1, "wb");
