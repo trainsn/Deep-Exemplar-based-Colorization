@@ -126,10 +126,12 @@ int ComputeCombo(int argc, char** argv)
 		}
 
 		// first detect if flow exits
-		sprintf(ffileName0, "%s\\%s_%s.txt", outputDir_flow.c_str(), name_A.c_str(), name_B.c_str());
+		sprintf(ffileName0, "%s/%s_%s.txt", outputDir_flow.c_str(), name_A.c_str(), name_B.c_str());
+		printf("%s", ffileName0);
 		// dwAttrib0 = GetFileAttributes(ffileName0);
 
-		sprintf(ffileName1, "%s\\%s_%s.txt", outputDir_flow.c_str(), name_B.c_str(), name_A.c_str());
+		sprintf(ffileName1, "%s/%s_%s.txt", outputDir_flow.c_str(), name_B.c_str(), name_A.c_str());
+		printf("%s", ffileName1);	
 		// dwAttrib1 = GetFileAttributes(ffileName1);
 
 		// if (dwAttrib0 == INVALID_FILE_ATTRIBUTES)
