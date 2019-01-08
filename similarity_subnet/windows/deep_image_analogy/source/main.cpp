@@ -89,7 +89,7 @@ void run_flow(int argc, char** argv)
 		dp.SetBPrime(BP);
 		dp.SetOutputDir(outputDir_flow);
 		dp.SetRatio(1.0);
-		dp.SetBlendWeight(2);
+		dp.SetBlendWeight(3);
 		dp.UsePhotoTransfer(false);
 		dp.LoadInputs();
 		dp.ComputeAnn(classifier_A, classifier_B);

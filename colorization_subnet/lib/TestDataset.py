@@ -99,7 +99,12 @@ class TestDataset(data.Dataset):
 		out_name = '%s_%s.png' % (os.path.splitext(img_name0)[0], os.path.splitext(img_name1)[0])
 		return out_name
 
-	def __getitem__(self, index):
+        def get_style_name(self, index):
+                img_name0, img_name1 = self.image_pairs[index]
+                style_name = '%s.png' % (os.path.splitext(img_name1)[0])
+                return style_name
+        
+        def __getitem__(self, index):
 		image_id = 0
 		pair_id = index
 

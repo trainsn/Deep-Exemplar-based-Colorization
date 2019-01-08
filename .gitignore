@@ -1,0 +1,8 @@
+*.caffemodel
+*.pth
+*.jpg
+*.png
+*.combo
+
+*.txt
+*.pyc

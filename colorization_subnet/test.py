@@ -76,6 +76,18 @@ if __name__ == '__main__':
         else:
             im_l, err_ba, warped_ba, warped_aba, im_ab, err_ab = orig_im_l, orig_err_ba, orig_warped_ba, orig_warped_aba, orig_im_ab, orig_err_ab
 
+
+        warpedba_im = lab2rgb_transpose_mc(warped_ba[0, 0:1], warped_ba[0, 1:])
+        temp_im = Image.fromarray(warpedba_im)
+        if (iter == 0):
+            width, height = temp_im.size
+            numPerRow = 16
+            numPerCol = 16
+            result = Image.new(temp_im.mode, (width*numPerRow, height*numPerCol))
+        temp_im.save(os.path.join(opt.out_dir+"/../style", out_name))
+        col = iter % numPerRow  
+        row = int(iter / numPerRow) 
+        result.paste(temp_im, box=(col*width, row*height))
         colornet_input = torch.cat((im_l, warped_ba[:, 1:, ...], err_ba, err_ab), dim=1)
 
         if opt.gpu_id >= 0:
@@ -91,3 +103,4 @@ if __name__ == '__main__':
 
         warpba_color_im = lab2rgb_transpose_mc(orig_im_l[0], pred_orig_ab[0])
         Image.fromarray(warpba_color_im).save(os.path.join(opt.out_dir, out_name))
+    result.save('bonsai.tf' + test_dataset.get_style_name(0))
